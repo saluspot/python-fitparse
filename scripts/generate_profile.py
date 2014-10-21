@@ -265,14 +265,14 @@ def fix_units(data):
 def parse_csv_fields(data, num_expected_if_empty):
     if data is None:
         return [None] * num_expected_if_empty
-    elif isinstance(data, basestring):
+    elif isinstance(data, str):
         return [(int(x.strip()) if x.strip().isdigit() else x.strip()) for x in data.strip().split(',')]
     else:
         return [data]
 
 
 def parse_spreadsheet(xls_file, *sheet_names):
-    if isinstance(xls_file, basestring):
+    if isinstance(xls_file, str):
         workbook = xlrd.open_workbook(xls_file)
     else:
         workbook = xlrd.open_workbook(file_contents=xls_file.read())
@@ -292,7 +292,7 @@ def parse_spreadsheet(xls_file, *sheet_names):
                 row_values = row_values[:14]
 
             for value in row_values:
-                if isinstance(value, basestring):
+                if isinstance(value, str):
                     # Use strings for now. Unicode is wonky
                     value = value.strip().encode('ascii', 'ignore')
                     if value == '':
@@ -460,7 +460,7 @@ def get_xls_and_version_from_zip(path):
 def main(input_xls_or_zip, output_py_path=None):
     if output_py_path and os.path.exists(output_py_path):
         if not open(output_py_path, 'rb').read().strip().startswith(PROFILE_HEADER_FIRST_PART):
-            print "Python file doesn't begin with appropriate header. Exiting."
+            print("Python file doesn't begin with appropriate header. Exiting.")
             sys.exit(1)
 
     if open(input_xls_or_zip, 'rb').read().startswith(XLS_HEADER_MAGIC):
@@ -493,17 +493,17 @@ def main(input_xls_or_zip, output_py_path=None):
 
     if output_py_path:
         open(output_py_path, 'wb').write(output)
-        print "Profile%s written to %s" % (
+        print("Profile%s written to %s" % (
             ' version %s' % profile_version if profile_version else '',
             output_py_path,
-        )
+        ))
     else:
-        print output.strip()
+        print(output.strip())
 
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print "Usage: %s <FitSDK.zip | Profile.xls> [profile.py]" % os.path.basename(__file__)
+        print("Usage: %s <FitSDK.zip | Profile.xls> [profile.py]" % os.path.basename(__file__))
         sys.exit(0)
 
     xls = sys.argv[1]
