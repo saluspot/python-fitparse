@@ -13,9 +13,9 @@ setup(
     name='fitparse',
     version=fitparse.__version__,
     description='Python library to parse ANT/Garmin .FIT files',
-    author='David Cooper',
-    author_email='dave@kupesoft.com',
-    url='https://www.github.com/dtcooper/python-fitparse',
+    author='David Cooper, Kévin Gomez',
+    author_email='dave@kupesoft.com, contact@kevingomez.fr',
+    url='https://github.com/K-Phoen/python-fitparse',
     license=open('LICENSE').read(),
     packages=['fitparse'],
     scripts=['scripts/fitdump'],  # Don't include generate_profile.py
