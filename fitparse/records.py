@@ -1,6 +1,6 @@
 import math
 import struct
-from itertools import zip_longest
+from six.moves import zip_longest
 
 
 class RecordBase(object):
