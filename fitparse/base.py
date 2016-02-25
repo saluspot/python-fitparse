@@ -1,10 +1,6 @@
 import struct
 
-try:
-    import io as StringIO
-except ImportError:
-    import io
-
+import six
 from fitparse.processors import FitFileDataProcessor
 from fitparse.profile import FIELD_TYPE_TIMESTAMP, MESSAGE_TYPES
 from fitparse.records import (
@@ -37,7 +33,7 @@ class FitFile(object):
                 # If the header smells like a string containing a fit file's
                 # data, we wrap it with StringIO
                 if isinstance(fileish, str) and fileish[8:12] == '.FIT':
-                    self._file = io.StringIO(fileish)
+                    self._file = six.StringIO(fileish)
                 else:
                     raise
 
